@@ -1,7 +1,8 @@
 # Ranking content-review opportunities from pre-decision search signals
 
 - **Author:** Hisham
-- **Lane:** Applied Search Intelligence — page-level review prioritization
+- **Capstone:** ML-CAP-01 — Google Search Ranking & Discoverability
+- **Lane:** Refresh / Content Opportunity Scoring — page-level review prioritization
 - **Repository:** <https://github.com/Hisham-Walid/flyrank-ml-internship>
 - **Analysis date:** 2026-09-10
 
