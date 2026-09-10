@@ -1,0 +1,82 @@
+{
+  "assignment": "ML-08",
+  "seed": 42,
+  "feature_window": [
+    "2026-03-01",
+    "2026-03-20"
+  ],
+  "outcome_window": [
+    "2026-03-21",
+    "2026-03-31"
+  ],
+  "model_rows": 86574,
+  "train_rows": 76321,
+  "test_rows": 10253,
+  "train_clients": 16,
+  "test_clients": 6,
+  "test_positive_base_rate": 0.6258,
+  "relative_median_ndcg_gain_vs_baseline": 0.1549,
+  "comparison": [
+    {
+      "method": "Dummy mean",
+      "median_client_ndcg_at_20": 0.04411,
+      "mean_client_ndcg_at_20": 0.046161,
+      "mean_client_precision_at_20": 0.683333,
+      "mae_future_missed_clicks": 1.237079,
+      "held_out_positive_base_rate": 0.625768
+    },
+    {
+      "method": "Week-4 rule baseline",
+      "median_client_ndcg_at_20": 0.689758,
+      "mean_client_ndcg_at_20": 0.572852,
+      "mean_client_precision_at_20": 0.916667,
+      "mae_future_missed_clicks": 0.485579,
+      "held_out_positive_base_rate": 0.625768
+    },
+    {
+      "method": "Random Forest",
+      "median_client_ndcg_at_20": 0.796587,
+      "mean_client_ndcg_at_20": 0.69271,
+      "mean_client_precision_at_20": 0.85,
+      "mae_future_missed_clicks": 0.429661,
+      "held_out_positive_base_rate": 0.625768
+    }
+  ],
+  "permutation_importance": [
+    {
+      "feature": "prior_impressions",
+      "median_ndcg_drop": 0.74728,
+      "repeat_sd": 0.006603,
+      "why_plausible": "Sets the scale of recoverable click opportunity."
+    },
+    {
+      "feature": "prior_ctr_pct",
+      "median_ndcg_drop": 0.368047,
+      "repeat_sd": 0.077235,
+      "why_plausible": "Measures earlier click capture before the outcome begins."
+    },
+    {
+      "feature": "prior_avg_position",
+      "median_ndcg_drop": 0.090729,
+      "repeat_sd": 0.062578,
+      "why_plausible": "Provides the search-position context for attainable CTR."
+    },
+    {
+      "feature": "prior_active_days",
+      "median_ndcg_drop": 0.027578,
+      "repeat_sd": 0.004153,
+      "why_plausible": "Distinguishes stable history from a thin observation window."
+    },
+    {
+      "feature": "prior_clicks",
+      "median_ndcg_drop": -0.003178,
+      "repeat_sd": 0.001557,
+      "why_plausible": "Adds observed click evidence beyond the rounded CTR."
+    }
+  ],
+  "versions": {
+    "scikit_learn": "1.9.0",
+    "pandas": "3.0.5",
+    "duckdb": "1.5.5"
+  }
+}
