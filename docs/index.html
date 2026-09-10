@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A grouped-holdout study of content-review opportunity ranking using pre-decision search signals.">
+  <title>Can pre-decision search signals prioritize content review?</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#paper">Skip to paper</a>
+  <header class="hero">
+    <nav class="nav wrap" aria-label="Paper navigation">
+      <a class="brand" href="#top">Hisham · ML research</a>
+      <div class="nav-links">
+        <a href="#method">Method</a><a href="#results">Results</a>
+        <a href="#limits">Limits</a><a href="#reproduce">Reproduce</a>
+      </div>
+    </nav>
+    <div class="wrap hero-grid" id="top">
+      <div>
+        <p class="eyebrow">Applied search intelligence · September 2026</p>
+        <h1>Can pre-decision search signals prioritize content review?</h1>
+        <p class="dek">A public-safe, client-grouped evaluation of a human-review queue built
+          from five observable search-performance aggregates.</p>
+        <div class="actions">
+          <a class="button primary" href="https://github.com/Hisham-Walid/flyrank-ml-internship">View repository</a>
+          <a class="button" href="https://github.com/Hisham-Walid/flyrank-ml-internship/blob/main/work/notebooks/capstone.ipynb">Inspect notebook</a>
+        </div>
+      </div>
+      <aside class="finding" aria-label="Headline finding">
+        <span>Headline result</span>
+        <strong>+15.5%</strong>
+        <p>relative median client NDCG@20 versus the transparent rule on six unseen clients.</p>
+        <small>Measured ranking gain—not causal traffic lift.</small>
+      </aside>
+    </div>
+  </header>
+
+  <main id="paper">
+    <section class="wrap abstract" aria-labelledby="abstract-title">
+      <p class="section-kicker">Abstract</p>
+      <h2 id="abstract-title">A prioritization aid, not an editing autopilot</h2>
+      <p>This study asks whether pre-decision Google Search Console aggregates can help a content strategist rank pages for manual review. It uses the March 2026 FlyRank ML Internship release, aggregates March 1–20 into five features, and measures a March 21–31 missed-click opportunity proxy on 86,574 eligible pages. A fixed-seed random forest is compared with a transparent rule and a constant dummy on the same six-client grouped holdout, with no client overlap. The model measured median client NDCG@20 of <strong>0.797</strong>, a <strong>15.5% relative gain</strong> over the rule baseline's 0.690, while mean precision@20 decreased from 0.917 to 0.850 and the six-client bootstrap interval remained wide. The output is therefore a human-reviewed prioritization queue, not an automatic editing system or a claim of causal traffic lift.</p>
+    </section>
+
+    <section class="band" id="problem">
+      <div class="wrap two-col">
+        <div>
+          <p class="section-kicker">01 · Introduction</p>
+          <h2>The decision: what deserves scarce review time?</h2>
+        </div>
+        <div>
+          <p>At a March 20 decision point, can five observable search-performance aggregates rank page-level future missed-click opportunity better than a transparent review rule for clients unseen during training?</p>
+          <p>A content strategist needs a defensible first-look queue. A false positive costs review time and can invite an unnecessary edit; a false negative delays inspection of a potentially valuable page. The system returns a within-client rank and suggested review action, with human override on every row.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap" id="data">
+      <p class="section-kicker">02 · Data</p>
+      <h2>Strict time windows and a public-safe feature boundary</h2>
+      <div class="metric-grid">
+        <article><strong>≈79M</strong><span>page-day rows in the full release</span></article>
+        <article><strong>86,574</strong><span>eligible aggregated pages</span></article>
+        <article><strong>22</strong><span>pseudonymized clients</span></article>
+        <article><strong>5</strong><span>pre-decision features</span></article>
+      </div>
+      <div class="two-col prose">
+        <div><h3>Included</h3><p>The approved March 2026 `fact_content_daily_performance` partition. Features aggregate March 1–20 impressions, clicks, impression-weighted position, active days, and CTR. Rows require GSC availability, 100 prior impressions, an observed outcome-window impression, and a client with at least 100 eligible pages.</p></div>
+        <div><h3>Deliberately excluded</h3><p>June 2026 remained sealed. Future-window fields, client/content hashes, product-derived trend fields, GA4 fields, URLs, titles, and raw queries never enter model features or the public page. Eligibility excludes disappearing and very low-volume pages.</p></div>
+      </div>
+    </section>
+
+    <section class="band" id="method">
+      <div class="wrap">
+        <p class="section-kicker">03 · Methodology</p>
+        <h2>Same pages, same split, three ranking methods</h2>
+        <div class="steps">
+          <article><span>1</span><h3>Define the proxy</h3><p>Future impressions × the positive future CTR gap against training-client peers in the same position band. It is observed opportunity, not incremental clicks.</p></article>
+          <article><span>2</span><h3>Freeze the split</h3><p>A seeded 75/25 group split yields 16 training and six unseen test clients—10,253 held-out pages and zero client overlap.</p></article>
+          <article><span>3</span><h3>Compare honestly</h3><p>Constant dummy, transparent rule, and 200-tree random forest are evaluated on the identical holdout using median client NDCG@20, precision@20, and MAE.</p></article>
+        </div>
+        <div class="callout"><strong>Leakage test:</strong> adding forbidden future fields drove an invalid NDCG@20 of 1.000. Those fields were rejected; every retained feature was knowable by March 20.</div>
+      </div>
+    </section>
+
+    <section class="wrap" id="results">
+      <p class="section-kicker">04 · Results</p>
+      <h2>Better ordering, but not better on every metric</h2>
+      <figure class="figure-card">
+        <img src="assets/ml11_model_comparison.png" alt="Bar chart comparing median client NDCG at 20 for the dummy, rule baseline and random forest.">
+        <figcaption><strong>Figure 1.</strong> The model improved median client NDCG@20 on six clients unseen during training. The result is one grouped split, not a universal estimate.</figcaption>
+      </figure>
+      <div class="table-wrap" role="region" aria-label="Model comparison" tabindex="0">
+        <table><thead><tr><th>Method</th><th>Median client NDCG@20 ↑</th><th>Mean precision@20 ↑</th><th>MAE ↓</th></tr></thead>
+          <tbody><tr><td>Dummy mean</td><td>0.044</td><td>0.683</td><td>1.237</td></tr><tr><td>Rule baseline</td><td>0.690</td><td class="best">0.917</td><td>0.486</td></tr><tr><td>Random forest</td><td class="best">0.797</td><td>0.850</td><td class="best">0.430</td></tr></tbody>
+        </table>
+      </div>
+      <p class="takeaway"><strong>Interpretation.</strong> Against a held-out positive-target base rate of <strong>0.626</strong>, the model ordered opportunity magnitude better and reduced score error, while the stricter rule put more binary-positive pages in its top 20. The model's bootstrap 95% interval for median client NDCG@20 was <strong>0.405–0.876</strong>, wide enough to require caution.</p>
+      <figure class="figure-card">
+        <img src="assets/ml11_permutation_importance.png" alt="Horizontal bar chart showing prior impressions and prior CTR as the largest permutation importance values.">
+        <figcaption><strong>Figure 2.</strong> Visibility scale and prior CTR carried most of the fitted model's ranking signal. Importance is predictive association on this split, not causation.</figcaption>
+      </figure>
+    </section>
+
+    <section class="band" id="limits">
+      <div class="wrap">
+        <p class="section-kicker">05 · Limitations & honest framing</p>
+        <h2>What this study cannot claim</h2>
+        <div class="limits-grid">
+          <article><h3>Not causal</h3><p>The proxy does not show that editing a page produces traffic. No intervention or control design was used.</p></article>
+          <article><h3>One short period</h3><p>One March month and six held-out clients cannot establish seasonal or cross-market stability.</p></article>
+          <article><h3>Survivorship</h3><p>Activity in both windows is required, excluding disappearing and low-volume pages.</p></article>
+          <article><h3>Missing context</h3><p>Intent, SERP features, CMS freshness, content quality, conversions, and intervention history are absent.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap" id="recommendations">
+      <p class="section-kicker">06 · Ranked recommendations</p>
+      <h2>A 60-row queue with 100% human review</h2>
+      <figure class="figure-card">
+        <img src="assets/ml11_action_mix.png" alt="Horizontal bar chart of suggested review actions in the 60-row queue.">
+        <figcaption><strong>Figure 3.</strong> Most candidates call for snippet and intent diagnosis. Labels suggest where to look; they do not authorize edits.</figcaption>
+      </figure>
+      <ol class="recommendation-list">
+        <li><strong>Inspect page-one under-capture first.</strong><span>Check actual queries, intent and SERP context before considering title or snippet changes.</span></li>
+        <li><strong>Verify refresh need.</strong><span>For striking-distance pages, inspect CMS dates, stale facts, coverage gaps and internal links; never refresh by age alone.</span></li>
+        <li><strong>Protect strong assets.</strong><span>Monitor top-three pages and avoid unnecessary changes without stronger evidence.</span></li>
+        <li><strong>Wait when evidence is thin.</strong><span>Defer action on short histories and define a 30/60-day measurement plan for approved changes.</span></li>
+      </ol>
+      <div class="danger"><strong>No-go automation:</strong> no automatic publishing, rewriting, deletion, redirect, de-indexing, retraining, causal uplift claim, or action on high-risk content.</div>
+    </section>
+
+    <section class="band" id="reproduce">
+      <div class="wrap two-col">
+        <div><p class="section-kicker">07 · Reproducibility</p><h2>Every public number has a receipt</h2><p>Randomized steps use seed 42. Committed JSON receipts preserve the comparisons, uncertainty audit, and playbook summary; the capstone notebook regenerates the three aggregate figures.</p></div>
+        <div class="link-list">
+          <a href="https://github.com/Hisham-Walid/flyrank-ml-internship/blob/main/work/notebooks/w05_model.ipynb"><span>Model notebook</span><small>feature build, baseline, training</small></a>
+          <a href="https://github.com/Hisham-Walid/flyrank-ml-internship/blob/main/work/notebooks/w06_validation_audit.ipynb"><span>Validation audit</span><small>group split, leak probe, uncertainty</small></a>
+          <a href="https://github.com/Hisham-Walid/flyrank-ml-internship/blob/main/work/notebooks/w07_action_playbook.ipynb"><span>Action playbook</span><small>reason codes, review rules, export</small></a>
+          <a href="https://github.com/Hisham-Walid/flyrank-ml-internship/tree/main/work/outputs"><span>Metric receipts</span><small>machine-readable reported values</small></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap references" id="references">
+      <p class="section-kicker">08 · References & design basis</p>
+      <h2>Research and publishing guidance consulted</h2>
+      <ol><li><a href="https://www.nature.com/srep/author-instructions/submission-guidelines">Scientific Reports submission guidelines</a> — concise abstract, reproducible methods, clear figure legends.</li><li><a href="https://papers.nips.cc/paper_files/paper/2024/file/76d9dd096d9469d6b7e732f0cddb51b3-Supplemental-Datasets_and_Benchmarks_Track.pdf">Machine Learning Reproducibility Checklist</a> — assumptions, splits, exclusions, dependencies, and variation.</li><li><a href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site">GitHub Pages documentation</a> — branch-based publishing from `/docs`.</li><li><a href="https://web.dev/articles/accessible-responsive-design">Accessible responsive design</a> — semantic structure, readable scaling, and multi-device layout.</li></ol>
+    </section>
+
+    <section class="credit">
+      <div class="wrap"><p class="section-kicker">09 · Acknowledgments & data credit</p><h2>Built on the <a href="https://flyrank.ai">FlyRank ML Internship dataset</a></h2><p>FlyRank provided the anonymized learning release and internship framework. This analysis is an independent internship project. No private client data or row-level identifiers are published.</p></div>
+    </section>
+  </main>
+  <footer><div class="wrap"><span>Hisham · 2026</span><a href="#top">Back to top ↑</a></div></footer>
+</body>
+</html>

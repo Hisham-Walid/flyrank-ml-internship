@@ -1,0 +1,20 @@
+{
+  "assignment": "ML-11",
+  "seed": 42,
+  "eligible_pages": 86574,
+  "held_out_clients": 6,
+  "model_median_client_ndcg_at_20": 0.796587,
+  "baseline_median_client_ndcg_at_20": 0.689758,
+  "relative_ndcg_gain_vs_baseline": 0.1549,
+  "model_mean_precision_at_20": 0.85,
+  "baseline_mean_precision_at_20": 0.916667,
+  "model_mae": 0.429661,
+  "baseline_mae": 0.485579,
+  "bootstrap_95pct": [
+    0.405068,
+    0.876476
+  ],
+  "queue_candidates": 60,
+  "human_review_required_pct": 100.0,
+  "claim_scope": "observational_directional_decision_support"
+}
