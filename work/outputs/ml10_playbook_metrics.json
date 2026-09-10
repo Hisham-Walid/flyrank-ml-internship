@@ -1,0 +1,64 @@
+{
+  "assignment": "ML-10",
+  "seed": 42,
+  "feature_window": [
+    "2026-03-01",
+    "2026-03-20"
+  ],
+  "outcome_window": [
+    "2026-03-21",
+    "2026-03-31"
+  ],
+  "eligible_pages": 86574,
+  "held_out_clients": 6,
+  "queue_candidates": 60,
+  "candidates_per_client": 10,
+  "grouped_median_client_ndcg_at_20": 0.796587,
+  "human_review_required_pct": 100.0,
+  "action_mix": {
+    "CONTENT_REFRESH_REVIEW": 4,
+    "MONITOR": 6,
+    "MONITOR_MORE_DATA": 5,
+    "PROTECT_AND_MONITOR": 4,
+    "SNIPPET_INTENT_REVIEW": 41
+  },
+  "effort_mix": {
+    "Low: <1 hour": 41,
+    "Low: <30 min": 15,
+    "Medium: 2-4 hours": 4
+  },
+  "drift_dry_run": [
+    {
+      "feature": "prior_impressions",
+      "psi_train_vs_unseen_clients": 0.456129,
+      "dry_run_status": "material"
+    },
+    {
+      "feature": "prior_clicks",
+      "psi_train_vs_unseen_clients": 0.104556,
+      "dry_run_status": "investigate"
+    },
+    {
+      "feature": "prior_avg_position",
+      "psi_train_vs_unseen_clients": 0.289739,
+      "dry_run_status": "material"
+    },
+    {
+      "feature": "prior_active_days",
+      "psi_train_vs_unseen_clients": 0.108991,
+      "dry_run_status": "investigate"
+    },
+    {
+      "feature": "prior_ctr_pct",
+      "psi_train_vs_unseen_clients": 0.233184,
+      "dry_run_status": "investigate"
+    }
+  ],
+  "policy_status": "proposed_not_deployed",
+  "queue_csv_committed": false,
+  "versions": {
+    "scikit_learn": "1.9.0",
+    "pandas": "3.0.5",
+    "duckdb": "1.5.5"
+  }
+}
