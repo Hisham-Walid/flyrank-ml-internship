@@ -1,0 +1,84 @@
+{
+  "assignment": "ML-09",
+  "seed": 42,
+  "feature_window": [
+    "2026-03-01",
+    "2026-03-20"
+  ],
+  "outcome_window": [
+    "2026-03-21",
+    "2026-03-31"
+  ],
+  "population_condition": "prior impressions >=100; client rows >=100; at least one outcome-window impression",
+  "model_rows": 86574,
+  "comparison": [
+    {
+      "split": "Before: row-random",
+      "train_pages": 64930,
+      "test_pages": 21644,
+      "train_clients": 22,
+      "test_clients": 22,
+      "client_overlap": 22,
+      "positive_base_rate": 0.723896,
+      "dummy_median_client_ndcg_at_20": 0.082431,
+      "model_median_client_ndcg_at_20": 0.733225,
+      "model_mean_client_ndcg_at_20": 0.707873,
+      "model_mean_client_precision_at_20": 0.870455,
+      "model_mae": 0.865224
+    },
+    {
+      "split": "After: client-grouped",
+      "train_pages": 76321,
+      "test_pages": 10253,
+      "train_clients": 16,
+      "test_clients": 6,
+      "client_overlap": 0,
+      "positive_base_rate": 0.625768,
+      "dummy_median_client_ndcg_at_20": 0.04411,
+      "model_median_client_ndcg_at_20": 0.796587,
+      "model_mean_client_ndcg_at_20": 0.69271,
+      "model_mean_client_precision_at_20": 0.85,
+      "model_mae": 0.429661
+    }
+  ],
+  "grouped_median_client_ndcg_at_20_bootstrap_95pct": [
+    0.405068,
+    0.876476
+  ],
+  "deliberate_leak_probe": {
+    "invalid_features": [
+      "future_impressions",
+      "future_ctr_gap_pp"
+    ],
+    "median_client_ndcg_at_20": 0.99953,
+    "absolute_jump_vs_production": 0.202943,
+    "allowed_for_claim": false
+  },
+  "production_feature_importance": [
+    {
+      "feature": "prior_impressions",
+      "model_importance": 0.534607
+    },
+    {
+      "feature": "prior_ctr_pct",
+      "model_importance": 0.314717
+    },
+    {
+      "feature": "prior_avg_position",
+      "model_importance": 0.104198
+    },
+    {
+      "feature": "prior_clicks",
+      "model_importance": 0.031119
+    },
+    {
+      "feature": "prior_active_days",
+      "model_importance": 0.015359
+    }
+  ],
+  "versions": {
+    "scikit_learn": "1.9.0",
+    "pandas": "3.0.5",
+    "duckdb": "1.5.5"
+  }
+}
