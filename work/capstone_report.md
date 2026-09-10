@@ -7,8 +7,9 @@
 
 ## 0. Abstract
 
-This study asks whether pre-decision Google Search Console aggregates can help a content
-strategist rank pages for manual review. It uses the March 2026 FlyRank ML Internship release,
+FlyRank's content-review problem is a scarce-attention problem: when a portfolio contains many
+pages, can pre-decision Google Search Console aggregates help strategists decide what to diagnose
+first? This study uses the March 2026 FlyRank ML Internship release,
 aggregates March 1–20 into five features, and measures a March 21–31 missed-click opportunity
 proxy on 86,574 eligible pages. A fixed-seed random forest is compared with a transparent rule
 and a constant dummy on the same six-client grouped holdout, with no client overlap. The model
@@ -19,7 +20,8 @@ editing system or a claim of causal traffic lift.
 
 ## 1. Problem framing
 
-At a March 20 decision point, can five observable search-performance aggregates rank page-level
+For FlyRank's content teams, the operational decision is where to spend limited diagnostic time
+across a large content portfolio. At a March 20 decision point, can five observable search-performance aggregates rank page-level
 future missed-click opportunity better than a transparent review rule for clients unseen during
 training? The unit is an aggregated pseudonymous content page. A content strategist receives a
 within-client rank and suggested action. False positives consume review time and may encourage

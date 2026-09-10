@@ -41,7 +41,7 @@
     <section class="wrap abstract" aria-labelledby="abstract-title">
       <p class="section-kicker">Abstract</p>
       <h2 id="abstract-title">A prioritization aid, not an editing autopilot</h2>
-      <p>This study asks whether pre-decision Google Search Console aggregates can help a content strategist rank pages for manual review. It uses the March 2026 FlyRank ML Internship release, aggregates March 1–20 into five features, and measures a March 21–31 missed-click opportunity proxy on 86,574 eligible pages. A fixed-seed random forest is compared with a transparent rule and a constant dummy on the same six-client grouped holdout, with no client overlap. The model measured median client NDCG@20 of <strong>0.797</strong>, a <strong>15.5% relative gain</strong> over the rule baseline's 0.690, while mean precision@20 decreased from 0.917 to 0.850 and the six-client bootstrap interval remained wide. The output is therefore a human-reviewed prioritization queue, not an automatic editing system or a claim of causal traffic lift.</p>
+      <p>FlyRank's content-review problem is a scarce-attention problem: when a portfolio contains many pages, strategists need a defensible way to decide what to diagnose first. This study asks whether pre-decision Google Search Console aggregates can rank pages for that manual review, using the March 2026 FlyRank ML Internship release, five features aggregated over March 1–20, and a March 21–31 missed-click opportunity proxy on 86,574 eligible pages. A fixed-seed random forest is compared with a transparent rule and a constant dummy on the same six-client grouped holdout, with no client overlap. The model measured median client NDCG@20 of <strong>0.797</strong>, a <strong>15.5% relative gain</strong> over the rule baseline's 0.690, while mean precision@20 decreased from 0.917 to 0.850 and the six-client bootstrap interval remained wide. The output is therefore a human-reviewed prioritization queue, not an automatic editing system or a claim of causal traffic lift.</p>
     </section>
 
     <section class="band" id="problem">
@@ -51,7 +51,7 @@
           <h2>The decision: what deserves scarce review time?</h2>
         </div>
         <div>
-          <p>At a March 20 decision point, can five observable search-performance aggregates rank page-level future missed-click opportunity better than a transparent review rule for clients unseen during training?</p>
+          <p>FlyRank's operational content problem is deciding where to spend limited diagnostic time across a large portfolio. At a March 20 decision point, can five observable search-performance aggregates rank page-level future missed-click opportunity better than a transparent review rule for clients unseen during training?</p>
           <p>A content strategist needs a defensible first-look queue. A false positive costs review time and can invite an unnecessary edit; a false negative delays inspection of a potentially valuable page. The system returns a within-client rank and suggested review action, with human override on every row.</p>
         </div>
       </div>
