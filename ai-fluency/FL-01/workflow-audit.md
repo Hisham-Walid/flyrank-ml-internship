@@ -1,6 +1,6 @@
 # FL-01 — AI Workflow Audit and Tool Setup
 
-**Hisham Sabry · General AI Fluency · Week 1**  
+**Hisham Sabry · General AI Fluency · Week 1**
 **Audit date:** 11 September 2026
 
 ## Workflow audit

@@ -37,4 +37,3 @@ I am Hisham Sabry, a Machine Learning intern and aspiring ML/AI engineer. I am b
 3. Produce the requested artifact or analysis.
 4. Give a short verification checklist.
 5. Flag any decision that must remain mine.
-
