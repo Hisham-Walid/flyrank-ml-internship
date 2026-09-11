@@ -27,6 +27,11 @@ outputs/*.csv
 # your experiments live in work/; datasets never enter git
 work/**/*.csv
 
+# Account-specific AI Fluency evidence is uploaded privately to FlyRank.
+ai-fluency/**/evidence/*.png
+ai-fluency/**/evidence/*.jpg
+ai-fluency/**/evidence/*.jpeg
+
 # --- Python / notebooks ----------------------------------------------------
 __pycache__/
 *.py[cod]
