@@ -42,4 +42,3 @@ constraints are applied in the final paragraph.
 | “Hiring manager or technical lead” | Replaced with one named person | The assignment requires a specific person, not a broad persona. |
 | “Role, internship, or collaboration” | Reduced to one email action | Three outcomes were hiding inside one sentence. |
 | Lead with NDCG improvement only | Rejected | Honest evaluation requires the precision tradeoff and uncertainty beside the win. |
-

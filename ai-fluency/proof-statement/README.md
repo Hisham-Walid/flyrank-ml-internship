@@ -15,4 +15,3 @@ claim without outsourcing authorship.
 Every numerical claim traces to the verified ML capstone report. The statement does
 not claim production deployment, causal impact, independent third-party review, or
 consistent performance for every client.
-

@@ -26,4 +26,3 @@ uncomfortable metrics and limits.**
 - **One action:** email me about a junior ML engineering opportunity.
 - **Evidence boundary:** analytical prototype evaluated on a grouped holdout; no
   production, robustness, causal-impact, or client-benefit claim.
-
