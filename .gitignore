@@ -31,6 +31,8 @@ work/**/*.csv
 ai-fluency/**/evidence/*.png
 ai-fluency/**/evidence/*.jpg
 ai-fluency/**/evidence/*.jpeg
+# This assignment explicitly requires public screenshots; these contain no secrets.
+!ai-fluency/portfolio-sitemap-toolkit/evidence/*.png
 
 # --- Python / notebooks ----------------------------------------------------
 __pycache__/
